@@ -16,11 +16,19 @@ public class ZombieBehaviour : MonoBehaviour
     {
         
     }
-
+    private void FixedUpdate()
+    {
+        if (transform.position.x < -11)
+            Camera.main.GetComponent<GameManager>().gameOver();
+    }
     public void GetHit()
     {
         hp--;
         if (hp <= 0)
+        {
             Destroy(transform.gameObject);
+            Camera.main.GetComponent<GameManager>().addPoints(100);
+        }
+            
     }
 }
